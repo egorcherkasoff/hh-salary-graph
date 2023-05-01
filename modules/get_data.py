@@ -11,6 +11,7 @@ HEADERS = {
 }
 
 
+# combine all pages into single string to scrap all data together
 def get_full_html(html, request_url):
     pages = get_pages(html)
     full_html = f"{html}"
