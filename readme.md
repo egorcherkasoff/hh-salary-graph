@@ -22,11 +22,11 @@ This app provides up-to-date information about the job market, which can be bene
 
 ## Usage
 
-1. Enter the name of a job you want to get salary data for in the text box provided.
+1.  Enter the name of a job you want to get salary data for in the text box provided.
 
-2. Select whether you want to see the maximum, minimum, or average salaries for the job. _(Average by default)_
+2.  Select whether you want to see the maximum, minimum, or average salaries for the job. _(Average by default)_
 
-3. View the graphical representation of the salary data below filled field.
+3.  View the graphical representation of the salary data below filled field.
 
 ## Contributing
 
