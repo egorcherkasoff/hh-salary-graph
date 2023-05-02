@@ -2,7 +2,7 @@ import requests
 from .scrape import get_pages, get_data
 
 # base url for searching vacancies
-BASE_URL = "https://irkutsk.hh.ru/search/vacancy?search_field=name&search_field=description&only_with_salary=true&text="
+BASE_URL = "https://hh.ru/search/vacancy?area=113&search_field=name&search_field=description&only_with_salary=true&text="
 
 
 # have to use headers here because hh.ru responds 404 without User-Agent header
@@ -14,8 +14,15 @@ HEADERS = {
 # combine all pages into single string to scrap all data together
 def get_full_html(html, request_url):
     pages = get_pages(html)
+    # might try to change selector to avoid this if
+    if pages == "Фильтры":
+        pages = 1
+    else:
+        pages = int(pages)
+    # will try to change this to avoid getting way to high mem usage
     full_html = f"{html}"
-    for page_num in pages:
+    # collect data from all pages for query
+    for page_num in range(1, pages):
         response = requests.get(f"{request_url}&page={page_num}", headers=HEADERS)
         page = response.text
         full_html += page
@@ -26,7 +33,6 @@ def get_full_html(html, request_url):
 def get_first_page(query):
     # concat base url with query
     request_url = BASE_URL + f"{query}"
-    print(request_url)
     # make request and get html
     response = requests.get(request_url, headers=HEADERS)
     first_page = response.text
